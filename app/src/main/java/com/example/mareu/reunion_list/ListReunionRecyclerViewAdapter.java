@@ -38,9 +38,9 @@ public class ListReunionRecyclerViewAdapter extends RecyclerView.Adapter<ListReu
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Reunion reunion = mReunions.get(position);
-        holder.mReunionItem.setText(reunion.getLieu()+" - "+reunion.getHeure()+" - "+reunion.getSujet());
-        holder.mReunionParticipants.setText(reunion.getParticipants());
+        final Reunion<String> reunion = mReunions.get(position);
+        holder.mReunionItem.setText(reunion.getLieu()+" - "+reunion.getDate()+" - "+reunion.getHeure()+" - "+reunion.getSujet());
+     //   holder.mReunionParticipants.setText(reunion.getParticipants());
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

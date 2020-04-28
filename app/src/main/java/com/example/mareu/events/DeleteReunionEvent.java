@@ -6,10 +6,10 @@ import com.example.mareu.model.Reunion;
 public class DeleteReunionEvent {
 
 
-    public Reunion reunion;
+    public Reunion<String> reunion;
 
 
-    public DeleteReunionEvent(Reunion reunion) {
+    public DeleteReunionEvent(Reunion<String> reunion) {
         this.reunion = reunion;
     }
 }
