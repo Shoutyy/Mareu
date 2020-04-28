@@ -8,15 +8,15 @@ import java.util.List;
 
 public class DummyReunionApiService implements  ReunionApiService {
 
-    private List<Reunion<String>> reunions = DummyReunionGenerator.generateReunions();
+    private List<Reunion> reunions = DummyReunionGenerator.generateReunions();
 
     private List<Salle> salles = DummyReunionGenerator.generateSalles();
 
-    public Reunion<String> reunion;
+    public Reunion reunion;
 
 
     @Override
-    public List<Reunion<String>> getReunions() {
+    public List<Reunion> getReunions() {
         return reunions;
     }
 
@@ -24,7 +24,7 @@ public class DummyReunionApiService implements  ReunionApiService {
     public List<Salle> getSalles() {return salles;}
 
     @Override
-    public void deleteReunion(Reunion<String> reunion) { reunions.remove(reunion); }
+    public void deleteReunion(Reunion reunion) { reunions.remove(reunion); }
 
 
 }

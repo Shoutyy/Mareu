@@ -4,11 +4,10 @@ package com.example.mareu.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.lang.reflect.Array;
 import java.util.Objects;
 
 
-public class Reunion<T> implements Parcelable {
+public class Reunion implements Parcelable {
 
     private Integer id;
 
@@ -20,9 +19,9 @@ public class Reunion<T> implements Parcelable {
 
     private String sujet;
 
-    private Array participants;
+    private String[] participants;
 
-    public Reunion(Integer id, String date, String heure, String lieu, String sujet, Array participants) {
+    public Reunion(Integer id, String date, String heure, String lieu, String sujet, String[] participants) {
         this.id = id;
         this.date = date;
         this.heure = heure;
@@ -94,11 +93,11 @@ public class Reunion<T> implements Parcelable {
         this.sujet = sujet;
     }
 
-    public Array getParticipants() {
+    public String[] getParticipants() {
         return participants;
     }
 
-    public void setParticipants(Array participants) {
+    public void setParticipants(String[] participants) {
         this.participants = participants;
     }
 

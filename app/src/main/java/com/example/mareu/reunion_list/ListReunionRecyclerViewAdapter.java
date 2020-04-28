@@ -15,6 +15,7 @@ import com.example.mareu.model.Reunion;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -38,9 +39,11 @@ public class ListReunionRecyclerViewAdapter extends RecyclerView.Adapter<ListReu
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        final Reunion<String> reunion = mReunions.get(position);
+        final Reunion reunion = mReunions.get(position);
         holder.mReunionItem.setText(reunion.getLieu()+" - "+reunion.getDate()+" - "+reunion.getHeure()+" - "+reunion.getSujet());
-     //   holder.mReunionParticipants.setText(reunion.getParticipants());
+        holder.mReunionParticipants.setText(Arrays.toString(reunion.getParticipants())
+                .replace("[", "")
+                .replace("]", ""));
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
