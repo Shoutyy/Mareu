@@ -14,7 +14,6 @@ import com.example.mareu.R;
 import com.example.mareu.di.DI;
 import com.example.mareu.events.DeleteReunionEvent;
 import com.example.mareu.model.Reunion;
-import com.example.mareu.model.Salle;
 import com.example.mareu.service.ReunionApiService;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,7 +28,6 @@ public class ListReunionFragment extends Fragment {
 
     private ReunionApiService mApiService;
     private List<Reunion> mReunions;
-    private List<Salle> mSalles;
     private RecyclerView mRecyclerView;
     private Context mContext;
 
@@ -67,7 +65,6 @@ public class ListReunionFragment extends Fragment {
 
     private void initList() {
         mReunions = mApiService.getReunions();
-        mSalles = mApiService.getSalles();
         mRecyclerView.setAdapter(new ListReunionRecyclerViewAdapter(mReunions));
     }
 

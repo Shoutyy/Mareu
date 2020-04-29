@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Mareu</string>
+
+    <string-array name="arraySalle">
+        <item>Salle A</item>
+        <item>Salle B</item>
+        <item>Salle C</item>
+        <item>Salle D</item>
+        <item>Salle E</item>
+        <item>Salle F</item>
+    </string-array>
+
 </resources>

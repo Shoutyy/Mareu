@@ -1,7 +1,6 @@
 package com.example.mareu.service;
 
 import com.example.mareu.model.Reunion;
-import com.example.mareu.model.Salle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,20 +17,10 @@ public abstract class DummyReunionGenerator {
             new Reunion(6,"16/05/2020" , "11H00", "Salle F","Wario",new String[]{"amandine@lamzone.com","anthony@lamzone.com", "maxime@lamzone.com"})
     );
 
-    public static List<Salle> DUMMY_SALLES = Arrays.asList(
-            new Salle(1,"Salle A"),
-            new Salle(2,"Salle B"),
-            new Salle(3,"Salle C"),
-            new Salle(4,"Salle D"),
-            new Salle(5,"Salle E"),
-            new Salle(6,"Salle F")
-    );
 
     static List generateReunions() {
         return new ArrayList<>(DUMMY_REUNIONS);
     }
 
-    static List<Salle> generateSalles() {
-        return new ArrayList<>(DUMMY_SALLES);}
 }
 

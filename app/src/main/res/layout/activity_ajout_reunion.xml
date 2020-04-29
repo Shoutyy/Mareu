@@ -2,20 +2,76 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ajoutReunion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="reunion_list.AjoutReunionActivity">
 
 
+    <EditText
+        android:id="@+id/nomDeReunion"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="352dp"
+        android:layout_marginBottom="20dp"
+        android:hint="Nom"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/salleSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/phone"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nom"
-        android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/date"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="31dp"
+        android:hint="Select Date..."
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/time"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/salleSpinner" />
+
+    <EditText
+        android:id="@+id/time"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="33dp"
+        android:hint="Select Time..."
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/submitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/date" />
+
+    <Spinner
+        android:id="@+id/salleSpinner"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        app:layout_constraintBottom_toTopOf="@+id/date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomDeReunion" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="52dp"
+        android:text="SUBMIT"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
 
 </android.support.constraint.ConstraintLayout>
