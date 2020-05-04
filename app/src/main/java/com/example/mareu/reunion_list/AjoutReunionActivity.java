@@ -8,27 +8,52 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.mareu.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class AjoutReunionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+
+    EditText participants;
     EditText time;
     EditText date;
     DatePickerDialog datePickerDialog;
+    public List<String> mListParticipants = new ArrayList<>();
+
+    @BindView(R.id.button_participants)
+    public Button mButtonParticipants;
+    @BindView(R.id.id_participants)
+    public TextView mParticipants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_reunion);
+        ButterKnife.bind(this);
         Intent ajoutReunionActivityIntent = getIntent();
+
+        participants = findViewById(R.id.participants);
+        mButtonParticipants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+               mListParticipants.add(participants.getText().toString());
+               initList();
+            }
+        });
 
         // initiate the date picker and a button
         date = (EditText) findViewById(R.id.date);
@@ -97,5 +122,9 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
 
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
+    }
+
+    private void initList() {
+        mParticipants.setText(String.valueOf(mListParticipants));
     }
 }

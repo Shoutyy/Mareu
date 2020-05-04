@@ -22,6 +22,8 @@ public class ListReunionActivity extends AppCompatActivity {
     ViewPager mViewPager;
     @BindView(R.id.item_list_ajout_button)
     public ImageButton mAjoutButton;
+    @BindView(R.id.item_filter_reunion)
+    public ImageButton mFiltreReunion;
 
     ListReunionPagerAdapter mPagerAdapter;
 
@@ -39,6 +41,13 @@ public class ListReunionActivity extends AppCompatActivity {
         mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
         mViewPager.setAdapter(mPagerAdapter);
         mAjoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+                Intent ajoutReunionActivityIntent = new Intent(ListReunionActivity.this, AjoutReunionActivity.class);
+                startActivity(ajoutReunionActivityIntent);
+            }
+        });
+        mFiltreReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view){
                 Intent ajoutReunionActivityIntent = new Intent(ListReunionActivity.this, AjoutReunionActivity.class);
