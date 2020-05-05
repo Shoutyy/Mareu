@@ -1,13 +1,11 @@
 package com.example.mareu.model;
 
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.util.Objects;
 
 
-public class Reunion implements Parcelable {
+public class Reunion  {
 
     private Integer id;
 
@@ -29,29 +27,6 @@ public class Reunion implements Parcelable {
         this.sujet = sujet;
         this.participants = participants;
     }
-
-    protected Reunion(Parcel in) {
-
-        id = in.readInt();
-        date= in.readString();
-        heure = in.readString();
-        lieu = in.readString();
-        sujet = in.readString();
-      //  participants = in.readArray();
-    }
-
-    public static final Creator<Reunion> CREATOR = new Creator<Reunion>() {
-
-        @Override
-        public Reunion createFromParcel(Parcel in) {
-            return new Reunion(in);
-        }
-
-        @Override
-        public Reunion[] newArray(int size) { return new Reunion[size];
-        }
-
-    };
 
     public Integer getId() {
         return id;
@@ -112,21 +87,6 @@ public class Reunion implements Parcelable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(date);
-        parcel.writeString(heure);
-        parcel.writeString(lieu);
-        parcel.writeString(sujet);
-     //   parcel.writeArray(participants);
     }
 
 }

@@ -16,6 +16,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.mareu.R;
+import com.example.mareu.di.DI;
+import com.example.mareu.model.Reunion;
+import com.example.mareu.service.ReunionApiService;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,17 +30,21 @@ import butterknife.ButterKnife;
 
 public class AjoutReunionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
-
+    EditText nom;
     EditText participants;
     EditText time;
     EditText date;
     DatePickerDialog datePickerDialog;
     public List<String> mListParticipants = new ArrayList<>();
+    public List<Reunion>  mReunions;
+    private ReunionApiService mApiService;
 
     @BindView(R.id.button_participants)
     public Button mButtonParticipants;
     @BindView(R.id.id_participants)
     public TextView mParticipants;
+    @BindView(R.id.submitButton)
+    public Button mSubmitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +52,11 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         setContentView(R.layout.activity_ajout_reunion);
         ButterKnife.bind(this);
         Intent ajoutReunionActivityIntent = getIntent();
+
+        mApiService = DI.getReunionApiService();
+        mReunions = mApiService.getReunions();
+
+        nom = findViewById(R.id.nomDeReunion);
 
         participants = findViewById(R.id.participants);
         mButtonParticipants.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +124,14 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(this);
+
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View view){
+               mReunions.add(new Reunion(7, date.getText().toString(), time.getText().toString(), spinner.getSelectedItem().toString(), nom.getText().toString(), new String[]{String.valueOf(mListParticipants)}));
+               finish();
+            }
+        });
     }
 
     public void onItemSelected(AdapterView<?> parent, View view,
