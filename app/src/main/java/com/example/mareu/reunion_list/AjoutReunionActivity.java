@@ -128,7 +128,7 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view){
-               mReunions.add(new Reunion(7, date.getText().toString(), time.getText().toString(), spinner.getSelectedItem().toString(), nom.getText().toString(), new String[]{String.valueOf(mListParticipants)}));
+               mReunions.add(new Reunion(mReunions.size()+1, date.getText().toString(), time.getText().toString(), spinner.getSelectedItem().toString(), nom.getText().toString(), new String[]{String.valueOf(mListParticipants)}));
                finish();
             }
         });
