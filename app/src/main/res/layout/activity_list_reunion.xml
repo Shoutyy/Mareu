@@ -25,6 +25,33 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="Ma réu">
 
+            <EditText
+                android:id="@+id/date"
+                android:layout_width="130dp"
+                android:layout_height="57dp"
+                android:layout_marginBottom="28dp"
+                android:focusableInTouchMode="false"
+                android:hint="Select Date..."
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/salleSpinner" />
+
+            <Spinner
+                android:id="@+id/salleSpinner"
+                android:layout_width="130dp"
+                android:layout_height="57dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="21dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nomDeReunion" />
+
             <ImageButton
                 android:id="@+id/item_filter_reunion"
                 android:layout_width="wrap_content"
