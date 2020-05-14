@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.mareu.R;
 import com.example.mareu.di.DI;
@@ -22,6 +24,7 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 
+import butterknife.BindView;
 
 
 public class ListReunionFragment extends Fragment {
@@ -30,6 +33,7 @@ public class ListReunionFragment extends Fragment {
     private List<Reunion> mReunions;
     private RecyclerView mRecyclerView;
     private Context mContext;
+
 
 
     public static ListReunionFragment newInstance() {
@@ -64,7 +68,18 @@ public class ListReunionFragment extends Fragment {
 
 
     private void initList() {
-        mReunions = mApiService.getReunions();
+
+        if(this.mContext. == true;){
+            mReunions = mApiService.getReunions("Salle A");
+        }
+        else if(this.mContext.ifFilterLieu == true;){
+            mReunions = mApiService.getReunions("06/05/2020");
+        }
+
+        else {
+            mReunions = mApiService.getReunions();
+        }
+
         mRecyclerView.setAdapter(new ListReunionRecyclerViewAdapter(mReunions));
     }
 
@@ -81,15 +96,9 @@ public class ListReunionFragment extends Fragment {
         EventBus.getDefault().unregister(this);
     }
 
-
     @Subscribe
     public void onDeleteReunion(DeleteReunionEvent event) {
         mApiService.deleteReunion(event.reunion);
         initList();
     }
-/*
-    @Subscribe
-    public void onAjoutReunion() {
-        Intent ajoutReunionActivityIntent = new Intent(mContext, AjoutReunionActivity.class);
-    } */
 }

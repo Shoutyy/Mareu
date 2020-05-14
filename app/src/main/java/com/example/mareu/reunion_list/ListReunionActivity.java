@@ -123,4 +123,5 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
     }
+
 }

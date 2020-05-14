@@ -2,6 +2,7 @@
     <string name="app_name">Mareu</string>
 
     <string-array name="arraySalle">
+        <item />
         <item>Salle A</item>
         <item>Salle B</item>
         <item>Salle C</item>
