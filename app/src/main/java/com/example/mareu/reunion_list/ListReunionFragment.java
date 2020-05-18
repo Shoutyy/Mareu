@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.ImageButton;
 
 import com.example.mareu.R;
 import com.example.mareu.di.DI;
@@ -22,9 +20,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
-
-
-import butterknife.BindView;
 
 
 public class ListReunionFragment extends Fragment {
@@ -68,7 +63,7 @@ public class ListReunionFragment extends Fragment {
 
 
     private void initList() {
-
+/*
         if(this.mContext. == true;){
             mReunions = mApiService.getReunions("Salle A");
         }
@@ -79,7 +74,7 @@ public class ListReunionFragment extends Fragment {
         else {
             mReunions = mApiService.getReunions();
         }
-
+*/      mReunions = mApiService.getReunions();
         mRecyclerView.setAdapter(new ListReunionRecyclerViewAdapter(mReunions));
     }
 
