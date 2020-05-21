@@ -63,18 +63,18 @@ public class ListReunionFragment extends Fragment {
 
 
     private void initList() {
-/*
-        if(this.mContext. == true;){
-            mReunions = mApiService.getReunions("Salle A");
+        if(this.mContext.ifFilterDate == true;){
+            mReunions = mApiService.getReunions(date.getText().toString());
         }
+
         else if(this.mContext.ifFilterLieu == true;){
-            mReunions = mApiService.getReunions("06/05/2020");
+            mReunions = mApiService.getReunions(spinner.getSelectedItem().toString());
         }
 
         else {
             mReunions = mApiService.getReunions();
         }
-*/      mReunions = mApiService.getReunions();
+      mReunions = mApiService.getReunions();
         mRecyclerView.setAdapter(new ListReunionRecyclerViewAdapter(mReunions));
     }
 

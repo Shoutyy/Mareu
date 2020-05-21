@@ -37,6 +37,9 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
     ListReunionPagerAdapter mPagerAdapter;
     EditText date;
     DatePickerDialog datePickerDialog;
+    Boolean lieuFilter;
+    Boolean dateFilter;
+
 
 
 
@@ -84,6 +87,14 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
                 datePickerDialog.show();
             }
         });
+        if (date.getText().toString().trim().length() > 0)
+        {
+            dateFilter = false;
+        } else {
+            dateFilter = true;
+        }
+
+
 
         Spinner spinner = findViewById(R.id.salleSpinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -98,7 +109,7 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
         mFiltreReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view){
-                if(visibility == false )
+                if( visibility == false )
                 {
                     date.setVisibility(view.VISIBLE);
                     spinner.setVisibility(view.VISIBLE);
@@ -114,6 +125,24 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
         });
     }
 
+    public boolean ifFilterDate(){
+        Spinner spinner = findViewById(R.id.salleSpinner);
+        if (spinner.getSelectedItem().toString().trim().length() > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean ifFilterLieu(){
+        date = findViewById(R.id.date);
+        if (date.getText().toString().trim().length() > 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
@@ -125,3 +154,4 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
     }
 
 }
+
