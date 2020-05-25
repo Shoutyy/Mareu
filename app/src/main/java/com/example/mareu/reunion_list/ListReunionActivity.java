@@ -22,7 +22,7 @@ import java.util.Calendar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ListReunionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class ListReunionActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -37,8 +37,8 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
     ListReunionPagerAdapter mPagerAdapter;
     EditText date;
     DatePickerDialog datePickerDialog;
-    Boolean lieuFilter;
-    Boolean dateFilter;
+    public String fDate = "";
+    public String fSalle = "";
 
 
 
@@ -85,14 +85,12 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
+                fDate = date.getText().toString();
+                mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
+                mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
+                mViewPager.setAdapter(mPagerAdapter);
             }
         });
-        if (date.getText().toString().trim().length() > 0)
-        {
-            dateFilter = false;
-        } else {
-            dateFilter = true;
-        }
 
 
 
@@ -104,7 +102,21 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
         adapter.setDropDownViewResource(R.layout.spinner_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                fSalle = parentView.getItemAtPosition(position).toString();
+                mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
+                mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
+                mViewPager.setAdapter(mPagerAdapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
+
 
         mFiltreReunion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,33 +137,17 @@ public class ListReunionActivity extends AppCompatActivity implements AdapterVie
         });
     }
 
-    public boolean ifFilterDate(){
-        Spinner spinner = findViewById(R.id.salleSpinner);
-        if (spinner.getSelectedItem().toString().trim().length() > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
-    public boolean ifFilterLieu(){
-        date = findViewById(R.id.date);
-        if (date.getText().toString().trim().length() > 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
+
+/*
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
         // An item was selected. You can retrieve the selected item using
         CharSequence charSequence = (CharSequence) parent.getItemAtPosition(pos);
     }
+*/
 
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
-    }
 
 }
 

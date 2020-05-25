@@ -63,18 +63,22 @@ public class ListReunionFragment extends Fragment {
 
 
     private void initList() {
-        if(this.mContext.ifFilterDate == true;){
-            mReunions = mApiService.getReunions(date.getText().toString());
+
+        ListReunionActivity activity = (ListReunionActivity) getActivity();
+        String fSalle = activity.fSalle;
+        String fDate = activity.fDate;
+
+        if(!fSalle.equals("")){
+            mReunions = mApiService.getReunions(fSalle);
         }
 
-        else if(this.mContext.ifFilterLieu == true;){
-            mReunions = mApiService.getReunions(spinner.getSelectedItem().toString());
+        else if(!fDate.equals("")){
+            mReunions = mApiService.getReunions(fDate);
         }
 
         else {
             mReunions = mApiService.getReunions();
         }
-      mReunions = mApiService.getReunions();
         mRecyclerView.setAdapter(new ListReunionRecyclerViewAdapter(mReunions));
     }
 
@@ -84,6 +88,20 @@ public class ListReunionFragment extends Fragment {
         EventBus.getDefault().register(this);
         initList();
     }
+/*if(this.mContext.ifFilterDate == true;){
+            mReunions = mApiService.getReunions(date.getText().toString());
+        }
+
+        else if(this.mContext.ifFilterLieu == true;){
+            mReunions = mApiService.getReunions(spinner.getSelectedItem().toString());
+        }
+
+        else {
+            mReunions = mApiService.getReunions();
+        } */
+
+
+
 
     @Override
     public void onStop() {
