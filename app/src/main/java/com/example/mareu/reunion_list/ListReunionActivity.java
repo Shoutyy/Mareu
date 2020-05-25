@@ -4,6 +4,7 @@ package com.example.mareu.reunion_list;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -86,8 +87,11 @@ public class ListReunionActivity extends AppCompatActivity {
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
                 fDate = date.getText().toString();
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+                if(fragment != null)
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                 mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
-                mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
+                mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunion");
                 mViewPager.setAdapter(mPagerAdapter);
             }
         });
@@ -106,11 +110,15 @@ public class ListReunionActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 fSalle = parentView.getItemAtPosition(position).toString();
-                mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
-                mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
-                mViewPager.setAdapter(mPagerAdapter);
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+                if(datePickerDialog != null) {
+                    if(fragment != null)
+                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                    mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
+                    mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
+                    mViewPager.setAdapter(mPagerAdapter);
+                }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // Another interface callback

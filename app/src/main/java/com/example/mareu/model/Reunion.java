@@ -1,7 +1,6 @@
 package com.example.mareu.model;
 
 
-
 import java.util.Objects;
 
 
