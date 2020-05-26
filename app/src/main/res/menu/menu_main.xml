@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".reunion_list.ListReunionActivity"
+    android:layout_height="20dp" android:layout_width="20dp">
+
+    <item  android:id="@+id/fdate"
+        android:title="Date"/>
+    <item  android:id="@+id/flieu"
+        android:title="Lieu"/>
+</menu>

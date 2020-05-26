@@ -68,7 +68,7 @@ public class ListReunionFragment extends Fragment {
         String fSalle = activity.fSalle;
         String fDate = activity.fDate;
 
-        if(fSalle.equals("Salle A")){
+        if(!fSalle.equals("")){
             mReunions = mApiService.getReunions("Salle A");
         }
 
