@@ -69,11 +69,11 @@ public class ListReunionFragment extends Fragment {
         String fDate = activity.fDate;
 
         if(!fSalle.equals("")){
-            mReunions = mApiService.getReunions("Salle A");
+            mReunions = mApiService.getReunions(fSalle);
         }
 
-        else if(fDate != ""){
-            mReunions = mApiService.getReunions(fDate);
+        else if(!fDate.equals("")){
+            mReunions = mApiService.getfReunions(fDate);
         }
 
         else {
@@ -88,17 +88,6 @@ public class ListReunionFragment extends Fragment {
         EventBus.getDefault().register(this);
         initList();
     }
-/*if(this.mContext.ifFilterDate == true;){
-            mReunions = mApiService.getReunions(date.getText().toString());
-        }
-
-        else if(this.mContext.ifFilterLieu == true;){
-            mReunions = mApiService.getReunions(spinner.getSelectedItem().toString());
-        }
-
-        else {
-            mReunions = mApiService.getReunions();
-        } */
 
 
 

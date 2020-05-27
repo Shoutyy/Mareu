@@ -2,7 +2,6 @@ package com.example.mareu.service;
 
 import com.example.mareu.model.Reunion;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -19,7 +18,7 @@ public class DummyReunionApiService implements  ReunionApiService {
     }
 
     @Override
-    public List<Reunion> getReunions(Date date) {
+    public List<Reunion> getfReunions(String date) {
         return reunions;
     }
 

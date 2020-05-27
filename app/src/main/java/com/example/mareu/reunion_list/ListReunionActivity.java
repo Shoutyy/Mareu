@@ -8,8 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -90,11 +88,13 @@ public class ListReunionActivity extends AppCompatActivity {
                 datePickerDialog.show();
                 fDate = date.getText().toString();
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
-                if(fragment != null)
-                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
+                if(datePickerDialog != null) {
+                    if (fragment != null)
+                        getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
+              /*  mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
                 mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunion");
-                mViewPager.setAdapter(mPagerAdapter);
+                mViewPager.setAdapter(mPagerAdapter); */
+                }
             }
         });
 
@@ -113,14 +113,13 @@ public class ListReunionActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 fSalle = parentView.getItemAtPosition(position).toString();
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
-                if(datePickerDialog != null) {
                     if(fragment != null)
-                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                    mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
+                        getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
+                  /*  mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
                     mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
-                    mViewPager.setAdapter(mPagerAdapter);
+                    mViewPager.setAdapter(mPagerAdapter); */
                 }
-            }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // Another interface callback
@@ -145,14 +144,13 @@ public class ListReunionActivity extends AppCompatActivity {
             }
         });
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -166,17 +164,6 @@ public class ListReunionActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
-
-/*
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        CharSequence charSequence = (CharSequence) parent.getItemAtPosition(pos);
-    }
 */
-
-
 }
 
