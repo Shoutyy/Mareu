@@ -13,7 +13,7 @@ public class DummyReunionApiService implements  ReunionApiService {
 
     public Reunion reunion;
 
-     ListReunionActivity activity = (ListReunionActivity) ListReunionActivity.this;
+    ListReunionActivity activity = (ListReunionActivity) ListReunionActivity.this;
     String fLieu = activity.fLieu;
     String fDate = activity.fDate;
 
