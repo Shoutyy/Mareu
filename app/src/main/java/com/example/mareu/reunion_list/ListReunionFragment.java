@@ -63,22 +63,10 @@ public class ListReunionFragment extends Fragment {
 
 
     private void initList() {
-
         ListReunionActivity activity = (ListReunionActivity) getActivity();
-        String fSalle = activity.fSalle;
+        String fLieu = activity.fLieu;
         String fDate = activity.fDate;
-
-        if(!fSalle.equals("")){
-            mReunions = mApiService.getReunions(fSalle);
-        }
-
-        else if(!fDate.equals("")){
-            mReunions = mApiService.getfReunions(fDate);
-        }
-
-        else {
-            mReunions = mApiService.getReunions();
-        }
+        mReunions = mApiService.getReunions(fDate, fLieu);
         mRecyclerView.setAdapter(new ListReunionRecyclerViewAdapter(mReunions));
     }
 

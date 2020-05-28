@@ -54,7 +54,7 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         Intent ajoutReunionActivityIntent = getIntent();
 
         mApiService = DI.getReunionApiService();
-        mReunions = mApiService.getReunions();
+        mReunions = mApiService.getReunions("", "");
 
         nom = findViewById(R.id.nomDeReunion);
 

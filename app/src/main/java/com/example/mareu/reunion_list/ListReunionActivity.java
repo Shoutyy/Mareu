@@ -39,7 +39,7 @@ public class ListReunionActivity extends AppCompatActivity {
     EditText date;
     DatePickerDialog datePickerDialog;
     public String fDate = "";
-    public String fSalle = "";
+    public String fLieu = "";
 
 
 
@@ -111,7 +111,7 @@ public class ListReunionActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                fSalle = parentView.getItemAtPosition(position).toString();
+                fLieu = parentView.getItemAtPosition(position).toString();
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
                     if(fragment != null)
                         getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
@@ -144,26 +144,5 @@ public class ListReunionActivity extends AppCompatActivity {
             }
         });
     }
-/*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.fdate:
-                visibility = false;
-            case R.id.flieu:
-                visibility = true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-*/
 }
 

@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface ReunionApiService {
 
-    List<Reunion> getReunions();
+    List<Reunion> getReunions(String date, String lieu);
 
-    List<Reunion> getfReunions(String date);
+ //   List<Reunion> getfReunions(String date);
 
-    List<Reunion> getReunions(String lieu);
+  //  List<Reunion> getReunions(String lieu);
 
 
     void deleteReunion(Reunion reunion);
