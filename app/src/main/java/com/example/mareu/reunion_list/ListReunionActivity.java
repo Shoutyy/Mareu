@@ -83,18 +83,15 @@ public class ListReunionActivity extends AppCompatActivity {
                                 // set day of month , month and year value in the edit text
                                 date.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
+                                fDate = date.getText().toString();
+                                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+                                if(datePickerDialog != null) {
+                                    if (fragment != null)
+                                        getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
+                                }
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.show();
-                fDate = date.getText().toString();
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
-                if(datePickerDialog != null) {
-                    if (fragment != null)
-                        getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
-              /*  mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
-                mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunion");
-                mViewPager.setAdapter(mPagerAdapter); */
-                }
             }
         });
 
@@ -134,12 +131,20 @@ public class ListReunionActivity extends AppCompatActivity {
                     date.setVisibility(view.VISIBLE);
                     spinner.setVisibility(view.VISIBLE);
                     visibility = true;
+                    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+                    if(fragment != null)
+                        getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
                 }
                 else
                 {
                     visibility = false;
                     date.setVisibility(view.GONE);
                     spinner.setVisibility(view.GONE);
+                    fDate = "";
+                    fLieu = "";
+                    Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+                    if(fragment != null)
+                        getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
                 }
             }
         });

@@ -1,7 +1,6 @@
 package com.example.mareu.service;
 
 import com.example.mareu.model.Reunion;
-import com.example.mareu.reunion_list.ListReunionActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,33 +12,29 @@ public class DummyReunionApiService implements  ReunionApiService {
 
     public Reunion reunion;
 
-    ListReunionActivity activity = (ListReunionActivity) ListReunionActivity.this;
-    String fLieu = activity.fLieu;
-    String fDate = activity.fDate;
-
     @Override
     public List<Reunion> getReunions(String date, String lieu) {
-        if (!fDate.equals("") & fLieu.equals("")) {
+        if (!date.equals("") & lieu.equals("")) {
             List<Reunion> fReunions = new ArrayList<>();
             for (Reunion reunion : reunions) {
-                if (reunion.getDate().equals(fDate)) {
+                if (reunion.getDate().equals(date)) {
                     fReunions.add(reunion);
                 }
             }
             return fReunions;
-        } else if (fDate.equals("") & !fLieu.equals("")) {
+        } else if (date.equals("") & !lieu.equals("")) {
             List<Reunion> fReunions = new ArrayList<>();
             for (Reunion reunion : reunions) {
-                if (reunion.getLieu().equals(fLieu)) {
+                if (reunion.getLieu().equals(lieu)) {
                     fReunions.add(reunion);
                 }
             }
             return fReunions;
 
-        } else if (!fDate.equals("") & !fLieu.equals("")) {
+        } else if (!date.equals("") & !lieu.equals("")) {
             List<Reunion> fReunions = new ArrayList<>();
             for (Reunion reunion : reunions) {
-                if (reunion.getLieu().equals(fLieu) & reunion.getDate().equals(fDate)) {
+                if (reunion.getLieu().equals(lieu) & reunion.getDate().equals(date)) {
                     fReunions.add(reunion);
                 }
             }
