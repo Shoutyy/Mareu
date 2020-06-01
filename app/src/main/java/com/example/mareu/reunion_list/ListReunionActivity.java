@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.mareu.R;
 
@@ -34,6 +35,7 @@ public class ListReunionActivity extends AppCompatActivity {
     @BindView(R.id.item_filter_reunion)
     public ImageButton mFiltreReunion;
 
+    private TextView tv;
     Boolean visibility;
     ListReunionPagerAdapter mPagerAdapter;
     EditText date;

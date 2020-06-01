@@ -25,6 +25,7 @@ public class ListReunionRecyclerViewAdapter extends RecyclerView.Adapter<ListReu
 
 
     private final List<Reunion> mReunions;
+    private TextView tv;
 
     public ListReunionRecyclerViewAdapter(List<Reunion> items) {
         mReunions = items;
@@ -34,6 +35,8 @@ public class ListReunionRecyclerViewAdapter extends RecyclerView.Adapter<ListReu
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_reunion, parent, false);
+        tv = (TextView) view.findViewById(R.id.item_list_item);
+        tv.setSelected(true);  // Set focus to the textview
         return new ViewHolder(view);
     }
 
@@ -44,6 +47,7 @@ public class ListReunionRecyclerViewAdapter extends RecyclerView.Adapter<ListReu
         holder.mReunionParticipants.setText(Arrays.toString(reunion.getParticipants())
                 .replace("[", "")
                 .replace("]", ""));
+
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

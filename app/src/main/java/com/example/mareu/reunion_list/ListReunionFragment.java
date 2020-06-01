@@ -30,7 +30,6 @@ public class ListReunionFragment extends Fragment {
     private Context mContext;
 
 
-
     public static ListReunionFragment newInstance() {
         ListReunionFragment fragment = new ListReunionFragment();
         return fragment;
@@ -40,6 +39,7 @@ public class ListReunionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getReunionApiService();
+
     }
 
     @Override
@@ -57,6 +57,7 @@ public class ListReunionFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+
         initList();
         return view;
     }

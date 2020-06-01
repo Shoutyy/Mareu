@@ -24,15 +24,16 @@
 
     <TextView
         android:id="@+id/item_list_item"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
         android:singleLine="true"
         android:textColor="#231903"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:maxLength="30"
         app:layout_constraintBottom_toBottomOf="@+id/item_list_round"
         app:layout_constraintStart_toEndOf="@+id/item_list_round"
         app:layout_constraintTop_toTopOf="@+id/item_list_round"
