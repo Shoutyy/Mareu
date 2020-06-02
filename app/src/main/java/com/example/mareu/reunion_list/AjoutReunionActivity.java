@@ -67,18 +67,14 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
             }
         });
 
-        // initiate the date picker and a button
         date = (EditText) findViewById(R.id.date);
-        // perform click event on edit text
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
                 final Calendar calendar = Calendar.getInstance();
                 int mYear = calendar.get(Calendar.YEAR); // current year
                 int mMonth = calendar.get(Calendar.MONTH); // current month
                 int mDay = calendar.get(Calendar.DAY_OF_MONTH); // current day
-                // date picker dialog
                 datePickerDialog = new DatePickerDialog(AjoutReunionActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -93,9 +89,8 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
             }
         });
 
-        //  initiate the edit text
+
         time = (EditText) findViewById(R.id.time);
-        // perform click event listener on edit text
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,14 +110,10 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         });
 
         Spinner spinner = findViewById(R.id.salleSpinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.arraySalle, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
-
         spinner.setOnItemSelectedListener(this);
 
         mSubmitButton.setOnClickListener(new View.OnClickListener() {

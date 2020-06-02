@@ -57,7 +57,6 @@ public class ListReunionFragment extends Fragment {
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-
         initList();
         return view;
     }
@@ -77,8 +76,6 @@ public class ListReunionFragment extends Fragment {
         EventBus.getDefault().register(this);
         initList();
     }
-
-
 
 
     @Override

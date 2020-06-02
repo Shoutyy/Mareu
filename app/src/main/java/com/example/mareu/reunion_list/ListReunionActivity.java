@@ -15,7 +15,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.mareu.R;
 
@@ -35,15 +34,13 @@ public class ListReunionActivity extends AppCompatActivity {
     @BindView(R.id.item_filter_reunion)
     public ImageButton mFiltreReunion;
 
-    private TextView tv;
+
     Boolean visibility;
     ListReunionPagerAdapter mPagerAdapter;
     EditText date;
     DatePickerDialog datePickerDialog;
     public String fDate = "";
     public String fLieu = "";
-
-
 
 
 
@@ -65,24 +62,19 @@ public class ListReunionActivity extends AppCompatActivity {
         });
 
         visibility = false;
-        // initiate the date picker and a button
         date = findViewById(R.id.date);
-        // perform click event on edit text
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
                 final Calendar calendar = Calendar.getInstance();
                 int mYear = calendar.get(Calendar.YEAR); // current year
                 int mMonth = calendar.get(Calendar.MONTH); // current month
                 int mDay = calendar.get(Calendar.DAY_OF_MONTH); // current day
-                // date picker dialog
                 datePickerDialog = new DatePickerDialog(ListReunionActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
                                 date.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
                                 fDate = date.getText().toString();
@@ -98,14 +90,10 @@ public class ListReunionActivity extends AppCompatActivity {
         });
 
 
-
         Spinner spinner = findViewById(R.id.salleSpinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.arraySalle,R.layout.spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner_item);
-        // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -114,9 +102,6 @@ public class ListReunionActivity extends AppCompatActivity {
                 Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
                     if(fragment != null)
                         getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
-                  /*  mPagerAdapter = new ListReunionPagerAdapter(getSupportFragmentManager());
-                    mPagerAdapter.addFragment(ListReunionFragment.newInstance(), "Réunions");
-                    mViewPager.setAdapter(mPagerAdapter); */
                 }
 
             @Override
