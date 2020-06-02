@@ -70,7 +70,7 @@ public class FilterSalleReunionTest {
                 childAtPosition(
                         allOf(withId(R.id.item_list_reunion),
                                 childAtPosition(
-                                        withId(R.id.list_neighbours),
+                                        withId(R.id.list_reunions),
                                         0)),
                         1),
                 isDisplayed())).check(matches(withText(containsString("Salle A"))));

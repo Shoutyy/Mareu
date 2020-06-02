@@ -137,7 +137,7 @@ public class AddReunionListTest {
 
         onView(allOf(withId(R.id.item_list_reunion),
                 childAtPosition(
-                        allOf(withId(R.id.list_neighbours),
+                        allOf(withId(R.id.list_reunions),
                                 withParent(withId(R.id.container))),
                         6),
                 isDisplayed())).check(matches(isDisplayed()));
