@@ -44,6 +44,7 @@ public class ListReunionActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +61,34 @@ public class ListReunionActivity extends AppCompatActivity {
                 startActivity(ajoutReunionActivityIntent);
             }
         });
+        setDateFilter();
+        setFilter();
+        setLieu();
+    }
 
+    public void setLieu(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.arraySalle,R.layout.spinner_item);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
+        Spinner spinner = findViewById(R.id.salleSpinner);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                fLieu = parentView.getItemAtPosition(position).toString();
+                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+                if(fragment != null)
+                    getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
+    }
+
+    public void setDateFilter() {
         visibility = false;
         date = findViewById(R.id.date);
         date.setOnClickListener(new View.OnClickListener() {
@@ -88,28 +116,11 @@ public class ListReunionActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+    }
 
 
+    public void setFilter() {
         Spinner spinner = findViewById(R.id.salleSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.arraySalle,R.layout.spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                fLieu = parentView.getItemAtPosition(position).toString();
-                Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
-                    if(fragment != null)
-                        getSupportFragmentManager().beginTransaction().detach(fragment).attach(fragment).commit();
-                }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
-            }
-        });
-
         mFiltreReunion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view){

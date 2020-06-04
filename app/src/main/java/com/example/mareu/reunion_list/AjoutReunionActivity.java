@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mareu.R;
 import com.example.mareu.di.DI;
@@ -58,38 +59,46 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
 
         nom = findViewById(R.id.nomDeReunion);
 
+        setLieu();
+        setDate();
+        setTime();
+        setParticipants();
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
+            Spinner spinner = findViewById(R.id.salleSpinner);
+            @Override
+            public void onClick (View view){
+               mReunions.add(new Reunion(mReunions.size()+1, date.getText().toString(), time.getText().toString(), spinner.getSelectedItem().toString(), nom.getText().toString(), new String[]{String.valueOf(mListParticipants)}));
+               finish();
+            }
+        });
+    }
+
+    public void setParticipants(){
         participants = findViewById(R.id.participants);
         mButtonParticipants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view){
-               mListParticipants.add(participants.getText().toString());
-               initList();
+                if (participants.getText().toString().trim().length() < 5)  {
+                    Toast.makeText(AjoutReunionActivity.this, "You did not enter a participant", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mListParticipants.add(participants.getText().toString());
+                    initList();
+                }
             }
         });
+    }
 
-        date = (EditText) findViewById(R.id.date);
-        date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar calendar = Calendar.getInstance();
-                int mYear = calendar.get(Calendar.YEAR); // current year
-                int mMonth = calendar.get(Calendar.MONTH); // current month
-                int mDay = calendar.get(Calendar.DAY_OF_MONTH); // current day
-                datePickerDialog = new DatePickerDialog(AjoutReunionActivity.this,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
-                                date.setText(dayOfMonth + "/"
-                                        + (monthOfYear + 1) + "/" + year);
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.show();
-            }
-        });
+    public void setLieu(){
+        Spinner spinner = findViewById(R.id.salleSpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.arraySalle, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+    }
 
-
+    public void setTime(){
         time = (EditText) findViewById(R.id.time);
         time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,19 +117,28 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
                 mTimePicker.show();
             }
         });
+    }
 
-        Spinner spinner = findViewById(R.id.salleSpinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.arraySalle, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
-
-        mSubmitButton.setOnClickListener(new View.OnClickListener() {
+    public void setDate(){
+        date = findViewById(R.id.date);
+        date.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View view){
-               mReunions.add(new Reunion(mReunions.size()+1, date.getText().toString(), time.getText().toString(), spinner.getSelectedItem().toString(), nom.getText().toString(), new String[]{String.valueOf(mListParticipants)}));
-               finish();
+            public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
+                int mYear = calendar.get(Calendar.YEAR); // current year
+                int mMonth = calendar.get(Calendar.MONTH); // current month
+                int mDay = calendar.get(Calendar.DAY_OF_MONTH); // current day
+                datePickerDialog = new DatePickerDialog(AjoutReunionActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                date.setText(dayOfMonth + "/"
+                                        + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
             }
         });
     }

@@ -14,6 +14,7 @@ import org.junit.runners.JUnit4;
 import java.util.List;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -51,8 +52,14 @@ public class ReunionServiceTest {
     @Test
     public void addReunionWithSuccess() {
         List<Reunion> reunions = service.getReunions("", "");
-        Reunion nReunion = new Reunion(reunions.size() + 1, "01/05/2020", " 16H50", "Salle A", "Marketing", new String[]{"amandine@lamzone.com", "anthony@lamzone.com", "stephanie@lamzone.com"});
+        Reunion nReunion = new Reunion(reunions.size() + 1, "01/5/2020", " 16H50", "Salle A", "Marketing", new String[]{"amandine@lamzone.com", "anthony@lamzone.com", "stephanie@lamzone.com"});
         reunions.add(nReunion);
         assertTrue(reunions.contains(nReunion));
+    }
+
+    @Test
+    public void filterReunionWithSuccess() {
+       Reunion fReunions = service.getReunions("6/5/2020", "Salle A").get(0);
+       assertSame("6/5/2020", fReunions.getDate());
     }
 }
