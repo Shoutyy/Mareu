@@ -10,6 +10,7 @@ public interface ReunionApiService {
 
     List<Reunion> getReunions(String date, String lieu);
 
+    void injectReunion();
 
     void deleteReunion(Reunion reunion);
 

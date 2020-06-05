@@ -45,6 +45,11 @@ public class DummyReunionApiService implements  ReunionApiService {
     }
 
     @Override
+    public void injectReunion() {
+        reunions.addAll(DummyReunionGenerator.generateReunions());
+    }
+
+    @Override
     public void deleteReunion(Reunion reunion) { reunions.remove(reunion); }
 
 
