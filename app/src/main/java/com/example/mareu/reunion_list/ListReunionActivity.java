@@ -66,6 +66,13 @@ public class ListReunionActivity extends AppCompatActivity {
         setLieu();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.clear();
+    }
+
+
     public void setLieu(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.arraySalle,R.layout.spinner_item);

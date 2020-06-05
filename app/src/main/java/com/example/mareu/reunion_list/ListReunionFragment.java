@@ -39,7 +39,6 @@ public class ListReunionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mApiService = DI.getReunionApiService();
-
     }
 
     @Override
