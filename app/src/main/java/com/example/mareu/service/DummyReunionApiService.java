@@ -44,16 +44,6 @@ public class DummyReunionApiService implements  ReunionApiService {
         }
     }
 
-  /*  @Override
-    public List<Reunion> getfReunions(String date) {
-        return reunions;
-    }
-
-    @Override
-    public List<Reunion> getReunions(String lieu) {
-        return reunions;
-    } */
-
     @Override
     public void deleteReunion(Reunion reunion) { reunions.remove(reunion); }
 
