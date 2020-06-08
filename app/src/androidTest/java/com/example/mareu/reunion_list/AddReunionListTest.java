@@ -23,12 +23,12 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static com.example.mareu.utils.RecyclerViewItemCountAssertion.withItemCount;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
@@ -36,6 +36,9 @@ import static org.hamcrest.Matchers.is;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class AddReunionListTest {
+
+    private static int ITEMS_COUNT = 6;
+
 
     @Rule
     public ActivityTestRule<ListReunionActivity> mActivityTestRule = new ActivityTestRule<>(ListReunionActivity.class);
@@ -89,9 +92,8 @@ public class AddReunionListTest {
                 childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
                 12))).perform(scrollTo(), click());
 
-        onView(allOf(withId(R.id.item_list_reunion),
-                childAtPosition(allOf(withId(R.id.list_reunions), withParent(withId(R.id.container))), 6),
-                isDisplayed())).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.list_reunions), withParent(allOf(withId(R.id.container), childAtPosition(withId(R.id.main_content), 1))),
+                isDisplayed())).check(withItemCount(ITEMS_COUNT+1));
     }
 
     private static Matcher<View> childAtPosition(
