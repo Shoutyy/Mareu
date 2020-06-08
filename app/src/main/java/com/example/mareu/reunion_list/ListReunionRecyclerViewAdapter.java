@@ -36,7 +36,7 @@ public class ListReunionRecyclerViewAdapter extends RecyclerView.Adapter<ListReu
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_reunion, parent, false);
         tv = (TextView) view.findViewById(R.id.item_list_item);
-        tv.setSelected(true);  // Set focus to the textview
+        tv.setSelected(true);
         return new ViewHolder(view);
     }
 

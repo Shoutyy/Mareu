@@ -2,7 +2,6 @@ package com.example.mareu.reunion_list;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -52,13 +51,9 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_reunion);
         ButterKnife.bind(this);
-        Intent ajoutReunionActivityIntent = getIntent();
-
         mApiService = DI.getReunionApiService();
         mReunions = mApiService.getReunions("", "");
-
         nom = findViewById(R.id.nomDeReunion);
-
         setLieu();
         setDate();
         setTime();
@@ -73,12 +68,12 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
-    public void setParticipants(){
+    public void setParticipants() {
         participants = findViewById(R.id.participants);
         mButtonParticipants.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View view){
-                if (participants.getText().toString().trim().length() < 5)  {
+            public void onClick (View view) {
+                if (participants.getText().toString().trim().length() < 5) {
                     Toast.makeText(AjoutReunionActivity.this, "You did not enter a participant", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -89,7 +84,7 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
-    public void setLieu(){
+    public void setLieu() {
         Spinner spinner = findViewById(R.id.salleSpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.arraySalle, android.R.layout.simple_spinner_item);
@@ -98,7 +93,7 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         spinner.setOnItemSelectedListener(this);
     }
 
-    public void setTime(){
+    public void setTime() {
         time = (EditText) findViewById(R.id.time);
         time.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,28 +107,27 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time.setText(selectedHour + ":" + selectedMinute);
                     }
-                }, hour, minute, true);//Yes 24 hour time
+                }, hour, minute, true);
                 mTimePicker.setTitle("Select Time");
                 mTimePicker.show();
             }
         });
     }
 
-    public void setDate(){
+    public void setDate() {
         date = findViewById(R.id.date);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final Calendar calendar = Calendar.getInstance();
-                int mYear = calendar.get(Calendar.YEAR); // current year
-                int mMonth = calendar.get(Calendar.MONTH); // current month
-                int mDay = calendar.get(Calendar.DAY_OF_MONTH); // current day
+                int mYear = calendar.get(Calendar.YEAR);
+                int mMonth = calendar.get(Calendar.MONTH);
+                int mDay = calendar.get(Calendar.DAY_OF_MONTH);
                 datePickerDialog = new DatePickerDialog(AjoutReunionActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
                                 date.setText(dayOfMonth + "/"
                                         + (monthOfYear + 1) + "/" + year);
                             }

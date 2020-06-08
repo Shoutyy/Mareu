@@ -41,105 +41,56 @@ public class AddReunionListTest {
     public ActivityTestRule<ListReunionActivity> mActivityTestRule = new ActivityTestRule<>(ListReunionActivity.class);
 
     @Test
-    public void listReunionActivityTest() {
+    public void addReunionListTest() {
         onView(allOf(withId(R.id.item_list_ajout_button),
-                childAtPosition(
-                        allOf(withId(R.id.main_content),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        2),
-                isDisplayed())).perform(click());
+                childAtPosition(allOf(withId(R.id.main_content), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                2))).perform(scrollTo(), click());
 
         onView(allOf(withId(R.id.nomDeReunion),
-                childAtPosition(
-                        allOf(withId(R.id.ajoutReunion),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        1),
-                isDisplayed())).perform(replaceText("Mario"), closeSoftKeyboard());
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                1))).perform(scrollTo(), click());
+
+        onView(allOf(withId(R.id.nomDeReunion),
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                1))).perform(scrollTo(), replaceText("mario"), closeSoftKeyboard());
 
         onView(allOf(withId(R.id.salleSpinner),
-                childAtPosition(
-                        allOf(withId(R.id.ajoutReunion),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        11),
-                isDisplayed())).perform(click());
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                11))).perform(scrollTo(), click());
 
-        onData(anything())
-                .inAdapterView(childAtPosition(
-                        withClassName(is("android.widget.PopupWindow$PopupBackgroundView")),
-                        0))
+        onData(anything()).inAdapterView(childAtPosition(withClassName(is("android.widget.PopupWindow$PopupBackgroundView")), 0))
                 .atPosition(1).perform(click());
 
         onView(allOf(withId(R.id.date),
-                childAtPosition(
-                        allOf(withId(R.id.ajoutReunion),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        3),
-                isDisplayed())).perform(click());
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                3))).perform(scrollTo(), click());
 
         onView(allOf(withId(android.R.id.button1), withText("OK"),
-                childAtPosition(
-                        childAtPosition(
-                                withClassName(is("android.widget.ScrollView")),
-                                0),
-                        3))).perform(scrollTo(), click());
+                childAtPosition(childAtPosition(withClassName(is("android.widget.ScrollView")), 0),
+                3))).perform(scrollTo(), click());
 
         onView(allOf(withId(R.id.time),
-                childAtPosition(
-                        allOf(withId(R.id.ajoutReunion),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        5),
-                isDisplayed())).perform(click());
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                5))).perform(scrollTo(), click());
 
         onView(allOf(withId(android.R.id.button1), withText("OK"),
-                childAtPosition(
-                        childAtPosition(
-                                withClassName(is("android.widget.ScrollView")),
-                                0),
-                        3))).perform(scrollTo(), click());
+                childAtPosition(childAtPosition(withClassName(is("android.widget.ScrollView")), 0),
+                3))).perform(scrollTo(), click());
 
-       onView(allOf(withId(R.id.participants),
-                childAtPosition(
-                        allOf(withId(R.id.ajoutReunion),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        7),
-                isDisplayed())).perform(replaceText("Mario@lamn.com"), closeSoftKeyboard());
+        onView(allOf(withId(R.id.participants),
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                7))).perform(scrollTo(), replaceText("mario@lamzon"), closeSoftKeyboard());
 
         onView(allOf(withId(R.id.button_participants),
-                childAtPosition(
-                        allOf(withId(R.id.ajoutReunion),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        8),
-                isDisplayed())).perform(click());
-
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                8))).perform(scrollTo(), click());
 
         onView(allOf(withId(R.id.submitButton), withText("SUBMIT"),
-                childAtPosition(
-                        allOf(withId(R.id.ajoutReunion),
-                                childAtPosition(
-                                        withId(android.R.id.content),
-                                        0)),
-                        12),
-                isDisplayed())).perform(click());
+                childAtPosition(allOf(withId(R.id.ajoutReunion), childAtPosition(withClassName(is("android.widget.ScrollView")), 0)),
+                12))).perform(scrollTo(), click());
 
         onView(allOf(withId(R.id.item_list_reunion),
-                childAtPosition(
-                        allOf(withId(R.id.list_reunions),
-                                withParent(withId(R.id.container))),
-                        6),
+                childAtPosition(allOf(withId(R.id.list_reunions), withParent(withId(R.id.container))), 6),
                 isDisplayed())).check(matches(isDisplayed()));
     }
 

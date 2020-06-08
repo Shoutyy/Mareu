@@ -13,7 +13,7 @@ public class ListReunionPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
 
-    public void addFragment(Fragment mFragment,String title){
+    public void addFragment(Fragment mFragment,String title) {
         mFragmentList.add(mFragment);
         mFragmentTitleList.add(title);
     }

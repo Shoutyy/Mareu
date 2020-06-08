@@ -102,9 +102,9 @@ public class ListReunionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar calendar = Calendar.getInstance();
-                int mYear = calendar.get(Calendar.YEAR); // current year
-                int mMonth = calendar.get(Calendar.MONTH); // current month
-                int mDay = calendar.get(Calendar.DAY_OF_MONTH); // current day
+                int mYear = calendar.get(Calendar.YEAR);
+                int mMonth = calendar.get(Calendar.MONTH);
+                int mDay = calendar.get(Calendar.DAY_OF_MONTH);
                 datePickerDialog = new DatePickerDialog(ListReunionActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -130,8 +130,8 @@ public class ListReunionActivity extends AppCompatActivity {
         Spinner spinner = findViewById(R.id.salleSpinner);
         mFiltreReunion.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View view){
-                if( visibility == false )
+            public void onClick (View view) {
+                if(visibility == false)
                 {
                     date.setVisibility(view.VISIBLE);
                     spinner.setVisibility(view.VISIBLE);

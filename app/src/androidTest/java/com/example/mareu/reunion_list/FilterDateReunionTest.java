@@ -40,7 +40,7 @@ public class FilterDateReunionTest {
     public ActivityTestRule<ListReunionActivity> mActivityTestRule = new ActivityTestRule<>(ListReunionActivity.class);
 
     @Test
-    public void listReunionActivityTest() {
+    public void filterDateReunionTest() {
         onView(allOf(withId(R.id.item_filter_reunion),
                 childAtPosition(
                         allOf(withId(R.id.toolbar),

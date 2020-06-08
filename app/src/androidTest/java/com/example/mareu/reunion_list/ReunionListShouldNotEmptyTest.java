@@ -34,7 +34,7 @@ public class ReunionListShouldNotEmptyTest {
 
 
     @Test
-    public void myNeighboursList_shouldNotBeEmpty() {
+    public void reunionListShouldNotEmptyTest() {
         onView(allOf(withId(R.id.list_reunions),
                 withParent(allOf(withId(R.id.container),
                         childAtPosition(

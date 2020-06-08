@@ -34,7 +34,7 @@ public class RemoveReunionListTest {
     public ActivityTestRule<ListReunionActivity> mActivityTestRule = new ActivityTestRule<>(ListReunionActivity.class);
 
     @Test
-    public void listReunionActivityTest() {
+    public void removeReunionListTest() {
         onView(allOf(withId(R.id.item_list_delete_button),
                 childAtPosition(
                         allOf(withId(R.id.item_list_reunion),
