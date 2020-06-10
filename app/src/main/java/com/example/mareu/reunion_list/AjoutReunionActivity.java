@@ -23,10 +23,11 @@ import com.example.mareu.service.ReunionApiService;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
 
 public class AjoutReunionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -38,6 +39,10 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
     public List<String> mListParticipants = new ArrayList<>();
     public List<Reunion>  mReunions;
     private ReunionApiService mApiService;
+    private static final String REGEX = "^[A-Za-z0-9+_.-]+@(.+)$";
+    private static Pattern pattern;
+    private static Matcher matcher;
+
 
     @BindView(R.id.button_participants)
     public Button mButtonParticipants;
@@ -54,6 +59,7 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
         mApiService = DI.getReunionApiService();
         mReunions = mApiService.getReunions("", "");
         nom = findViewById(R.id.nomDeReunion);
+        participants = findViewById(R.id.participants);
         setLieu();
         setDate();
         setTime();
@@ -62,23 +68,34 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
             Spinner spinner = findViewById(R.id.salleSpinner);
             @Override
             public void onClick (View view){
-               mReunions.add(new Reunion(mReunions.size()+1, date.getText().toString(), time.getText().toString(), spinner.getSelectedItem().toString(), nom.getText().toString(), new String[]{String.valueOf(mListParticipants)}));
-               finish();
+                if (!nom.getText().toString().equals("")) {
+                    mReunions.add(new Reunion(mReunions.size()+1, date.getText().toString(), time.getText().toString(), spinner.getSelectedItem().toString(), nom.getText().toString(), new String[]{String.valueOf(mListParticipants)}));
+                    finish();
+                }
+                else {
+                    Toast.makeText(AjoutReunionActivity.this, "You did not enter a valid reunion", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
+    public boolean validate(final String hex) {
+        matcher = pattern.matcher(hex);
+        return matcher.matches();
+
+    }
+
     public void setParticipants() {
-        participants = findViewById(R.id.participants);
+        pattern = Pattern.compile(REGEX, Pattern.CASE_INSENSITIVE);
         mButtonParticipants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view) {
-                if (participants.getText().toString().trim().length() < 5) {
-                    Toast.makeText(AjoutReunionActivity.this, "You did not enter a participant", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                if (validate(participants.getText().toString())) {
                     mListParticipants.add(participants.getText().toString());
                     initList();
+                }
+                else {
+                    Toast.makeText(AjoutReunionActivity.this, "You did not enter a valid participant", Toast.LENGTH_SHORT).show();
                 }
             }
         });
