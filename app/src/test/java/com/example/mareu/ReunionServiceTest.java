@@ -59,7 +59,9 @@ public class ReunionServiceTest {
 
     @Test
     public void filterReunionWithSuccess() {
-       Reunion fReunions = service.getReunions("6/5/2020", "Salle A").get(0);
-       assertSame("6/5/2020", fReunions.getDate());
+        List<Reunion> reunions = service.getReunions("6/5/2020", "Salle A");
+        Reunion fReunions = service.getReunions("6/5/2020", "Salle A").get(0);
+        assertSame("6/5/2020", fReunions.getDate());
+        assertTrue(reunions.size() == 1);
     }
 }
