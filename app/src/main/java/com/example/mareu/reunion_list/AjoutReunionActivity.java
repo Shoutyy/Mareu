@@ -82,7 +82,6 @@ public class AjoutReunionActivity extends AppCompatActivity implements AdapterVi
     public boolean validate(final String hex) {
         matcher = pattern.matcher(hex);
         return matcher.matches();
-
     }
 
     public void setParticipants() {
